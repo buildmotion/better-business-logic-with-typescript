@@ -104,6 +104,15 @@ You can view the output of the ` ShrimpTaco ` by running the specification tests
 ng test
 ```
 
+The following is the output from one of the concrete implementations of the ` Template Method `.
+```
+Retrieving ingredients for the taco...
+Making a Carne Asada Taco on a soft corn tortilla
+Adding tender grilled carne asada...
+Adding shredded lettuce and pico de gallo...
+Delivered tacos x [4] to Mateo.
+```
+
 ![](result.png)
 
 ### More Information
