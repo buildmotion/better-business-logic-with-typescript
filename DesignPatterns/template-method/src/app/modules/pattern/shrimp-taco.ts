@@ -5,15 +5,19 @@ export class ShrimpTaco extends TacoBase {
 
     constructor(customer: string, quantity: number = 1) {
         super(customer);
-        this.quantity = quantity;
+        this.taco.Quantity = quantity;
         this.name = 'Denver Shrimp Taco';
     }
 
     addFilling() {
-        console.log(`Adding grilled spicy shrimp...`);
+        const fillingInformation = `Adding grilled spicy shrimp...`;
+        this.taco.Filling = fillingInformation;
+        console.log(fillingInformation);
     }
 
     addToppings() {
-        console.log(`Adding shredded cabbage and tomatillo salsa...`);
+        const toppingInformation = `Adding shredded cabbage and tomatillo salsa...`;
+        this.taco.Toppings = toppingInformation;
+        console.log(toppingInformation);
     }
 }

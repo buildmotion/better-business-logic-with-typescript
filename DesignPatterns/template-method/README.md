@@ -122,7 +122,7 @@ export class SteakTaco extends TacoBase {
 ```
 
 ### End Result
-You can view the output of the ` SteakTaco ` by running the specification tests. 
+You can view the output of the ` SteakTaco ` and the ` ShrimpTaco ` by running the specification tests. 
 
 ```
 ng test

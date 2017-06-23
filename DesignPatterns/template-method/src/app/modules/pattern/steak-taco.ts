@@ -5,15 +5,19 @@ export class SteakTaco extends TacoBase {
 
     constructor(customer: string, quantity: number = 1) {
         super(customer);
-        this.quantity = quantity;
+        this.taco.Quantity = quantity;
         this.name = 'Carne Asada Taco';
     }
 
     addFilling() {
-        console.log(`Adding tender grilled carne asada...`);
+        const fillingInformation = `Adding tender grilled carne asada...`;
+        this.taco.Filling = fillingInformation;
+        console.log(fillingInformation);
     }
 
     addToppings() {
-        console.log(`Adding shredded lettuce and pico de gallo...`);
+        const toppingInformation = `Adding shredded lettuce and pico de gallo...`;
+        this.taco.Toppings = toppingInformation;
+        console.log(toppingInformation);
     }
 }

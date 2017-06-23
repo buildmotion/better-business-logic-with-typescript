@@ -1,17 +1,19 @@
-
+import { TacoModel } from './../taco/taco.model';
 
 export class TacoTemplate {
 
-    quantity: number;
     name: string;
     customer: string;
+    taco: TacoModel = new TacoModel();
 
-    execute() {
+    execute(): TacoModel {
         this.retrieveIngredients();
         this.selectTacoType();
         this.addFilling();
         this.addToppings();
         this.deliverTaco();
+
+        return this.taco;
     };
 
     retrieveIngredients() {
@@ -31,6 +33,6 @@ export class TacoTemplate {
     }
 
     deliverTaco() {
-        console.log(`Preparing to deliver ${this.quantity} taco${this.quantity > 1 ? 's' : ''}`);
+        console.log(`Preparing to deliver ${this.taco.Quantity} taco${this.taco.Quantity > 1 ? 's' : ''}`);
     }
 }
