@@ -113,7 +113,7 @@ Adding shredded lettuce and pico de gallo...
 Delivered tacos x [4] to Mateo.
 ```
 
-![](result.png?raw=true)
+![](result.PNG)
 
 ### More Information
 
