@@ -96,9 +96,33 @@ export class ShrimpTaco extends TacoBase {
     }
 }
 ```
+### Concrete Implementation :: Steak Taco
+The following ` SteakTaco ` class demonstrates the customized implementation of the template methods of the ` TacoTemplate ` base class. 
+
+```javascript
+
+import { TacoBase } from './taco-base';
+
+export class SteakTaco extends TacoBase {
+
+    constructor(customer: string, quantity: number = 1) {
+        super(customer);
+        this.quantity = quantity;
+        this.name = 'Carne Asada Taco';
+    }
+
+    addFilling() {
+        console.log(`Adding tender grilled carne asada...`);
+    }
+
+    addToppings() {
+        console.log(`Adding shredded lettuce and pico de gallo...`);
+    }
+}
+```
 
 ### End Result
-You can view the output of the ` ShrimpTaco ` by running the specification tests. 
+You can view the output of the ` SteakTaco ` by running the specification tests. 
 
 ```
 ng test
