@@ -1,6 +1,12 @@
 # Design Pattern: Template Method
 This application provides a simple implementation of the ` Template Method ` design pattern. The application contains a set of specification tests that demonstrate the pattern. 
 
+## Resources
+Here are some links to more resources about this pattern.
+
+* [https://sourcemaking.com/design_patterns/template_method](https://sourcemaking.com/design_patterns/template_method)
+* [http://www.dofactory.com/net/template-method-design-pattern](http://www.dofactory.com/net/template-method-design-pattern)
+
 Run the following command to execute the pattern:
 ```
 ng test
@@ -10,18 +16,22 @@ ng test
 The ` TacoTemplate ` class provides the template and the method ` execute() ` to create an amazing array of tacos. This class is meant to be an abstract base class for concrete implementations. 
 
 ```javascript
+import { TacoModel } from './../taco/taco.model';
+
 export class TacoTemplate {
 
-    quantity: number;
     name: string;
     customer: string;
+    taco: TacoModel = new TacoModel();
 
-    execute() {
+    execute(): TacoModel {
         this.retrieveIngredients();
         this.selectTacoType();
         this.addFilling();
         this.addToppings();
         this.deliverTaco();
+
+        return this.taco;
     };
 
     retrieveIngredients() {
@@ -41,7 +51,7 @@ export class TacoTemplate {
     }
 
     deliverTaco() {
-        console.log(`Preparing to deliver ${this.quantity} taco${this.quantity > 1 ? 's' : ''}`);
+        console.log(`Preparing to deliver ${this.taco.Quantity} taco${this.taco.Quantity > 1 ? 's' : ''}`);
     }
 }
 ```
@@ -51,7 +61,7 @@ A nice feature of this pattenr is that you can extend the ` template ` class in 
 
 In this example, all tacos by default have the same ` Taco Type ` - due to the implementation of the ` selectTacoTacoType() ` method. All concrete tacos that extend this class will now share this behavior. 
 
-```
+```javascript
 import { TacoTemplate } from './taco-template';
 
 export class TacoBase extends TacoTemplate {
@@ -59,16 +69,20 @@ export class TacoBase extends TacoTemplate {
     constructor(customer: string) {
         super();
         this.customer = customer;
-        this.quantity = 1;
+        this.taco.Quantity = 1;
     }
 
     selectTacoType() {
         // all tacos are made using soft corn torillas...default
-        console.log(`Making a ${this.name} on a soft corn tortilla`);
+        const tacoTypeInformation = `Making a ${this.name} on a soft corn tortilla`;
+        this.taco.TacoType = tacoTypeInformation;
+        console.log(tacoTypeInformation);
     }
 
     deliverTaco() {
-        console.log(`Delivered tacos x [${this.quantity}] to ${this.customer}.`);
+        const deliveryInformation = `Delivered tacos x [${this.taco.Quantity}] to ${this.customer}.`;
+        this.taco.DeliveryInfo = deliveryInformation;
+        console.log(deliveryInformation);
     }
 }
 ```
@@ -77,22 +91,27 @@ export class TacoBase extends TacoTemplate {
 The following ` ShrimpTaco ` class demonstrates the customized implementation of the template methods of the ` TacoTemplate ` base class. 
 
 ```javascript
+
 import { TacoBase } from './taco-base';
 
 export class ShrimpTaco extends TacoBase {
 
     constructor(customer: string, quantity: number = 1) {
         super(customer);
-        this.quantity = quantity;
+        this.taco.Quantity = quantity;
         this.name = 'Denver Shrimp Taco';
     }
 
     addFilling() {
-        console.log(`Adding grilled spicy shrimp...`);
+        const fillingInformation = `Adding grilled spicy shrimp...`;
+        this.taco.Filling = fillingInformation;
+        console.log(fillingInformation);
     }
 
     addToppings() {
-        console.log(`Adding shredded cabbage and tomatillo salsa...`);
+        const toppingInformation = `Adding shredded cabbage and tomatillo salsa...`;
+        this.taco.Toppings = toppingInformation;
+        console.log(toppingInformation);
     }
 }
 ```
@@ -100,23 +119,26 @@ export class ShrimpTaco extends TacoBase {
 The following ` SteakTaco ` class demonstrates the customized implementation of the template methods of the ` TacoTemplate ` base class. 
 
 ```javascript
-
 import { TacoBase } from './taco-base';
 
 export class SteakTaco extends TacoBase {
 
     constructor(customer: string, quantity: number = 1) {
         super(customer);
-        this.quantity = quantity;
+        this.taco.Quantity = quantity;
         this.name = 'Carne Asada Taco';
     }
 
     addFilling() {
-        console.log(`Adding tender grilled carne asada...`);
+        const fillingInformation = `Adding tender grilled carne asada...`;
+        this.taco.Filling = fillingInformation;
+        console.log(fillingInformation);
     }
 
     addToppings() {
-        console.log(`Adding shredded lettuce and pico de gallo...`);
+        const toppingInformation = `Adding shredded lettuce and pico de gallo...`;
+        this.taco.Toppings = toppingInformation;
+        console.log(toppingInformation);
     }
 }
 ```
@@ -138,7 +160,3 @@ Delivered tacos x [4] to Mateo.
 ```
 
 ![](result.PNG)
-
-### More Information
-
-* [www.dofactory.com :: Template Method](http://www.dofactory.com/net/template-method-design-pattern)
