@@ -3,11 +3,11 @@ import CompareResult = dCompareResult.CompareResult;
 import dCompare = require('typescript-dotnet-commonjs/System/Compare');
 import Compare = dCompare;
 
-import { RuleComposite } from './../modules/pattern/index';
-import { RuleResult } from './../modules/rule/index';
-import { Primitive } from './index';
-import { IsNotNullOrUndefined } from './index';
-import { Range } from './index';
+import {RuleComposite} from './../modules/pattern/index';
+import {RuleResult} from './../modules/rule/index';
+import {Primitive} from './index';
+import {IsNotNullOrUndefined} from './index';
+import {Range} from './index';
 
 /**
  * Use this rule to validate a string target. A valid string is not null or undefined; and it

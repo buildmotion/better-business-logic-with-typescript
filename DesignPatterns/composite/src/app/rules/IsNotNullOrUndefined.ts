@@ -12,8 +12,7 @@ export class IsNotNullOrUndefined extends RuleLeaf {
      * If the target is null or undefined, the result will be false.
      */
     render() {
-        this.isValid = true;
-        if (this.target == null || this.target === null || typeof this.target === 'undefined') {
+        if (this.target == null || this.target === null || typeof this.target === "undefined") {
             this.isValid = false;
         }
         return new RuleResult(this, this.target);

@@ -11,7 +11,7 @@ export class IsFalse extends RuleLeaf {
     }
 
     render() {
-        if (this.target) {
+        if (this.target) {//if(true)-->false;
             this.isValid = false;
         }
         return new RuleResult(this, this.target);

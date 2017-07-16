@@ -10,9 +10,9 @@ export class IsTrue extends RuleLeaf {
     }
 
     render() {
-        this.isValid = false;
-        if (this.target === true) {
-            this.isValid = true;
+        this.isValid = true;
+        if (this.target === false) {//if(not true)-->false;
+            this.isValid = false;
         }
         return new RuleResult(this, this.target);
     }

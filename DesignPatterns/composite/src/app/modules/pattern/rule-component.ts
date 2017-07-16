@@ -9,7 +9,7 @@ import {Severity} from './../../rules/severity.enum';
  * should extend [RuleLeaf] or [CompositeRule] - these rule abstractions extend [RulePolicy].
  */
 export class RuleComponent {
-    isValid: boolean = false;
+    isValid: boolean = true;
     message: string;
     name: string;
     priority: number;

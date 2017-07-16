@@ -13,6 +13,9 @@ export class IsNullOrUndefined extends RuleLeaf {
         if (this.target == null || typeof this.target === undefined || typeof this.target === "undefined") {
             this.isValid = true;
         }
+        else{
+            this.isValid = false;
+        }
         return new RuleResult(this, this.target);
     }
 }
