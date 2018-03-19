@@ -10,9 +10,8 @@ import sdk from '@stackblitz/sdk';
 })
 export class AppComponent implements OnInit {
   
-  gitHubRepo: string = `buildmotion/custom-angular-modules/tree/master/source/apps/ngAppOne`;
-  // gitHubRepo: string = `gothinkster/angular-realworld-example-app`;
-  
+  gitHubRepo: string = `buildmotion/better-business-logic-with-typescript/tree/master/DesignPatterns/angular-lifecycle-hooks`;  
+  // gitHubRepo: string = `buildmotion/custom-angular-modules/tree/master/source/apps/ngAppOne`;  
   title = 'Stackblitz :: template method pattern app';
 
   ngOnInit(): void {
