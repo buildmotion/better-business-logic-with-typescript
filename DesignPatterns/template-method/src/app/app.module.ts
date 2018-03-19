@@ -17,7 +17,8 @@ import { TacoModule } from './modules/taco/taco.module';
     HttpModule,
     TacoModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

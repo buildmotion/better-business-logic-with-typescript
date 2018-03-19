@@ -8,6 +8,7 @@ import { TacoService } from './taco.service';
     CommonModule
   ],
   declarations: [],
+  exports: [],
   providers: [
     TacoService
   ]

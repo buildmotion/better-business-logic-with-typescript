@@ -1,10 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
-
+import { TacoModule } from './taco.module';
 import { TacoService } from './taco.service';
 
 describe('TacoService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        TacoModule
+      ],
       providers: [TacoService]
     });
   });
