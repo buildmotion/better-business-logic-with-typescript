@@ -8,31 +8,47 @@ import { LoggingService } from '@buildmotion/logging';
 import { Router } from '@angular/router';
 import { Severity } from '@buildmotion/logging';
 import { ErrorResponse } from '@buildmotion/foundation';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-hello',
   templateUrl: './hello.component.html',
   styleUrls: ['./hello.component.scss']
 })
-export class HelloComponent extends ComponentBase implements OnChanges, OnInit, DoCheck, OnDestroy, AfterContentInit, AfterContentChecked, AfterViewChecked, AfterViewInit {
-
+  export class HelloComponent extends ComponentBase implements OnChanges, OnInit, DoCheck, OnDestroy, AfterContentInit, AfterContentChecked, AfterViewChecked, AfterViewInit {
+  subject: Subject<number> = new Subject();
+  componentEvents: Array<string> = [];
   useService = true;
   title: 'HelloComponent';
   @Input() helloTarget: string;
-  sequence = 0;
+  sequence: number;
   constructor(
     private someService: SomeService,
     loggingService: LoggingService,
     router: Router
   ) {
-    super(`HelloComponent`, loggingService, router)
+    super(`HelloComponent`, loggingService, router);
+    this.sequence = 1;
     this.logSequence(`constructor`);
     this.helloTarget = this.sequence.toString();
   }
 
+  subscription = this.subject.subscribe(
+    response => this.handleUpdate(response),
+    error => this.handleServiceErrors(error, null),
+    () => this.finishRequest(``)
+  );
+
+  handleUpdate(response: number) {
+    // need to show the data on the web page; updated item
+    this.sequence = response;
+  }
+
   logSequence(source: string, changes?: SimpleChanges) {
     this.helloTarget = this.sequence.toString();
-    console.log(`HelloComponent.${source}.${this.sequence}`);
+    const item = `HelloComponent.${source}.${this.sequence}`;
+    this.componentEvents.push(item);
+    console.log(item);
   }
 
   handleProcessSequenceResponse(response) {
@@ -40,7 +56,7 @@ export class HelloComponent extends ComponentBase implements OnChanges, OnInit, 
     this.loggingService.log(this.componentName, Severity.Information, `[${functionName}]: Preparing to handle the response from the [SecurityService] in the ${this.componentName}.`);
     if (response) {
       if (response.IsSuccess) {
-        this.sequence = response.Data;
+        this.subject.next(response.Data);
         this.loggingService.log(this.componentName, Severity.Information, `Successfully processed request to process [sequence]: ${this.sequence}`);
       } else {
         this.handleServiceErrors(response as ErrorResponse, this.someService.serviceContext);
@@ -85,6 +101,7 @@ export class HelloComponent extends ComponentBase implements OnChanges, OnInit, 
     this.logSequence(`ngOnChanges`);
   }
   ngOnInit(): void {
+    this.sequence = 0;
     this.logSequence(`ngOnInit`);
   }
   ngDoCheck(): void {

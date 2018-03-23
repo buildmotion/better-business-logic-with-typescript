@@ -1,2 +1,8 @@
 <h2>hello {{helloTarget}}!</h2>
 <button (click)='updateSequence()'>Update</button>
+
+<ul>
+    <li *ngFor="let item of componentEvents">
+        {{item}}
+    </li>
+</ul>
